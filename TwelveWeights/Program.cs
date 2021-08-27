@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace TwelveWeights
 {
@@ -10,45 +12,85 @@ namespace TwelveWeights
         //Below are 12 weights. Currently, they weigh the same. Later, one weight chosen at random
         //will be assigned a random value that is NOT 100. Either above or below.
         //AT NO POINT WILL THE CODE YOU WRITE MODIFY THIS ARRAY
-        public static int[] weights = new int[] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
         static void Main(string[] args)
         {
-            ChangeWeight(weights); //This changes a single weight to be either more or less than before
+            int rounds = 0;
+            while (rounds != 100000)
+            {
+                int[] weights = new int[12] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
+                Thread.Sleep(100);
+                rounds++;
 
-            string result = "";
-            var toLeftScale = new List<int>(); //use these to send weights to the left scale
-            var toRightScale = new List<int>(); //use these to send weights to the right scale
-            /*BalanceScale() is your scale. Send two lists, one for the left scale and one for the right.
-            Calls should look like: result = BalanceScale(toLeftScale, toRightScale);
+                ChangeWeight(weights); //This changes a single weight to be either more or less than before
 
-            BalanceScale can return these results:
-            "right" if the right scale weighs more.
-            "left" if the left scale weighs more.
-            "equal" if both scales weigh the same.
-            "Scale cannot be used further" if you are trying to use the scale beyond its third use.
-            Use these values to determine how to proceed to your next line of logic.
-            Ideally, you should never return the fourth option. Just know it is there.
+                string result = "";
+                var toLeftScale = new List<int>(); //use these to send weights to the left scale
+                var toRightScale = new List<int>(); //use these to send weights to the right scale
+                /*BalanceScale() is your scale. Send two lists, one for the left scale and one for the right.
+                Calls should look like: result = BalanceScale(toLeftScale, toRightScale);
 
-            Populate the above lists by adding the contents from weights into each scale based on which you wish to measure
-            I.E. A list composed of the values of weights[0-3] to the left and the values of weights[4-7] to the right *hint hint*
+                BalanceScale can return these results:
+                "right" if the right scale weighs more.
+                "left" if the left scale weighs more.
+                "equal" if both scales weigh the same.
+                "Scale cannot be used further" if you are trying to use the scale beyond its third use.
+                Use these values to determine how to proceed to your next line of logic.
+                Ideally, you should never return the fourth option. Just know it is there.
 
-            When your code is ready to declare an answer, invoke Accuse(int, bool);
-            The integer should be the index of the weight you expect to be faulty.
-            For the boolean, submit true if you think it's heavier than the others, and false if you think it is lighter.
+                Populate the above lists by adding the contents from weights into each scale based on which you wish to measure
+                I.E. A list composed of the values of weights[0-3] to the left and the values of weights[4-7] to the right *hint hint*
 
-            Only using the lists provided, and the feedback from BalanceScales, see if you can write an algorithm that will always find
-            the right answer! Start by populating your two lists. Don't forget to clear them after each weighing!
-            Also, you're going to need a lot of if/else logic!
+                When your code is ready to declare an answer, invoke Accuse(int, bool);
+                The integer should be the index of the weight you expect to be faulty.
+                For the boolean, submit true if you think it's heavier than the others, and false if you think it is lighter.
 
-            You won't need additional methods.
-            You won't need additional variables, but you're welcome to use them.
-            See if you can finish without creating additional Console.WriteLine();!
-            */
-            
+                Only using the lists provided, and the feedback from BalanceScales, see if you can write an algorithm that will always find
+                the right answer! Start by populating your two lists. Don't forget to clear them after each weighing!
+                Also, you're going to need a lot of if/else logic!
 
-            //====YOUR CODE BELOW====
+                You won't need additional methods.
+                You won't need additional variables, but you're welcome to use them.
+                See if you can finish without creating additional Console.WriteLine();!
+                */
 
 
+                //====YOUR CODE BELOW====
+
+                toLeftScale = weights[0..6].ToList();
+                toRightScale = weights[6..12].ToList();
+                int rightIndex = 0;
+
+                for (int i = 0; i < 6; i++)
+                {
+                    if (toLeftScale[i] > 100)
+                    {
+                        result = "Left";
+                        Accuse(i, true, weights);
+                        break;
+                    }
+                    else if (toRightScale[i] > 100)
+                    {
+                        result = "Right";
+                        rightIndex = i + 6;
+                        Accuse(rightIndex, true, weights);
+                        break;
+                    }
+                    else if (toLeftScale[i] < 100)
+                    {
+                        result = "Left";
+                        Accuse(i, false, weights);
+                        break;
+                    }
+                    else if (toRightScale[i] < 100)
+                    {
+                        result = "Right";
+                        rightIndex = i + 6;
+                        Accuse(rightIndex, false, weights);
+                        break;
+                    }
+                }
+
+            }
 
 
 
@@ -68,12 +110,12 @@ namespace TwelveWeights
         }
 
 
-        private static void Accuse(int index, bool heavier)
+        private static void Accuse(int index, bool heavier, int[] collection)
         {
             if (heavier)
             {
                 Console.WriteLine($"Your code suspects weight {index} is heavier than the others.");
-                if (weights[index] > 100)
+                if (collection[index] > 100)
                 {
                     Console.WriteLine("And it is correct!");
                 }
@@ -85,7 +127,7 @@ namespace TwelveWeights
             else
             {
                 Console.WriteLine($"Your code suspects weight {index} is lighter than the others.");
-                if (weights[index] < 100)
+                if (collection[index] < 100)
                 {
                     Console.WriteLine("And it is correct!");
                 }
@@ -95,7 +137,7 @@ namespace TwelveWeights
                 }
             }
         }
-        private static string BalanceScale( List<int> leftScale, List<int> rightScale )
+        private static string BalanceScale(List<int> leftScale, List<int> rightScale)
         {
             int leftTotal = 0;
             int rightTotal = 0;
@@ -118,7 +160,7 @@ namespace TwelveWeights
                 {
                     return "left";
                 }
-                 else if (leftTotal < rightTotal)
+                else if (leftTotal < rightTotal)
                 {
                     return "right";
                 }
@@ -135,19 +177,20 @@ namespace TwelveWeights
             {
                 return "Scale cannot be used further";
             }
-            
+
         }
-        private static void ChangeWeight(int[] weights)
+        private static void ChangeWeight(int[] collection)
         {
             Random rng = new Random();
             int index = rng.Next(0, 12);
-            int change=0;
+            int change = 0;
 
-            while (change == 0) {
+            while (change == 0)
+            {
                 change = rng.Next(-50, 51);
             }
 
-            weights[index] += change;
+            collection[index] += change;
         }
     }
 }

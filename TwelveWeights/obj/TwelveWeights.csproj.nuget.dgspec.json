@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\megam\\source\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj": {}
+    "C:\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj": {}
   },
   "projects": {
-    "C:\\Users\\megam\\source\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj": {
+    "C:\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\megam\\source\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj",
+        "projectUniqueName": "C:\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj",
         "projectName": "TwelveWeights",
-        "projectPath": "C:\\Users\\megam\\source\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj",
-        "packagesPath": "C:\\Users\\megam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\megam\\source\\repos\\TwelveWeights\\TwelveWeights\\obj\\",
+        "projectPath": "C:\\repos\\TwelveWeights\\TwelveWeights\\TwelveWeights.csproj",
+        "packagesPath": "C:\\Users\\Cruz Sanchez\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\TwelveWeights\\TwelveWeights\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\megam\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Cruz Sanchez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -54,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
